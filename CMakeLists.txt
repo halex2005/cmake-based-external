@@ -4,3 +4,4 @@ project(external)
 
 add_subdirectory(jsoncpp)
 add_subdirectory(nanodbc)
+add_subdirectory(pugixml)
