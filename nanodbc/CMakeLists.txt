@@ -25,7 +25,11 @@ set (SOURCES
 )
 
 add_library (nanodbc ${SOURCES})
-target_link_libraries(nanodbc odbc)
+if(WIN32)
+    target_link_libraries(nanodbc odbc32)
+elseif(UNIX)
+    target_link_libraries(nanodbc odbc)
+endif()
 
 ########################################
 ## executable example
