@@ -36,7 +36,7 @@ void run_test(const nanodbc::string_type::value_type* connection_string)
     {
 		results = execute(connection, NANODBC_TEXT("select a as first, b as second from public.simple_test where a = 1;"));
         results.next();
-		cout << endl << results.get<int>(NANODBC_TEXT("first")) << ", " << results.get<string>(1) << endl;
+		cout << endl << results.get<int>(NANODBC_TEXT("first")) << ", " << results.get<nanodbc::string_type>(1).c_str() << endl;
     }
 
     // Binding parameters
@@ -47,7 +47,7 @@ void run_test(const nanodbc::string_type::value_type* connection_string)
 		prepare(statement, NANODBC_TEXT("insert into public.simple_test (a, b) values (?, ?);"));
         const int eight_int = 8;
         statement.bind(0, &eight_int);
-        const string eight_str = "eight";
+        const nanodbc::string_type eight_str = NANODBC_TEXT("eight");
         statement.bind(1, eight_str.c_str());
         execute(statement);
 
@@ -201,7 +201,7 @@ void show(nanodbc::result& results)
     {
         cout << rows_displayed++ << "\t";
         for(short col = 0; col < columns; ++col)
-            cout << "(" << results.get<string>(col, "null") << ")\t";
+			cout << "(" << results.get<nanodbc::string_type>(col, NANODBC_TEXT("null")).c_str() << ")\t";
         cout << endl;
     }
 }
