@@ -165,8 +165,10 @@ namespace nanodbc
 #ifndef DOXYGEN
     #ifdef NANODBC_USE_UNICODE
         typedef std::wstring string_type;
+		#define NANODBC_TEXT(x) L ## x
     #else
         typedef std::string string_type;
+		#define NANODBC_TEXT(x) x
     #endif // NANODBC_USE_UNICODE
 
     #if defined(_WIN64)
