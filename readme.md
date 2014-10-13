@@ -46,6 +46,8 @@ Featured libraries
 - [jsoncpp](https://github.com/open-source-parsers/jsoncpp/) - json parser
 - [nanodbc](https://github.com/lexicalunit/nanodbc) - c++ wrapper for ODBC
 - [pugixml](http://pugixml.org) - one of the fastest xml libraries, has xpath support
+- [stacktrace](http://stacktrace.sourceforge.net/) - portable stack traces
+- [stackwalker](http://stackwalker.codeplex.com/) - stack trace backend for stacktrace on windows
 
 Licensing
 ---------
