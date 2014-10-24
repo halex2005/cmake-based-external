@@ -33,6 +33,8 @@ public:
      \param num_discard - number of stack entries to discard at the top. */
     call_stack (const size_t num_discard = 0);
 
+    explicit call_stack(void *context);
+
     virtual ~call_stack () throw();
 
     /** Serializes the entire call-stack into a text string. */

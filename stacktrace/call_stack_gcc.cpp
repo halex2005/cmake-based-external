@@ -53,6 +53,10 @@ call_stack::call_stack (const size_t num_discard /*= 0*/) {
     }
 }
 
+call_stack::call_stack(void *context)
+{
+}
+
 call_stack::~call_stack () throw() {
     // automatic cleanup
 }

@@ -14,8 +14,16 @@ class StackWalkerAdapter : public StackWalker {
 public:
     StackWalkerAdapter (const size_t num_discard) :
         StackWalker(StackWalker::RetrieveVerbose | StackWalker::SymBuildPath), // do not use public Microsoft-Symbol-Server
-        discard_idx(static_cast<int>(num_discard)+2) {
+        discard_idx(static_cast<int>(num_discard)+2)
+    {
     }
+
+    StackWalkerAdapter()
+        : StackWalker(StackWalker::RetrieveVerbose | StackWalker::SymBuildPath)
+        , discard_idx(0)
+    {
+    }
+
     virtual ~StackWalkerAdapter () {}
 
 protected:
@@ -60,6 +68,13 @@ namespace stacktrace {
 call_stack::call_stack (const size_t num_discard /*= 0*/) {
     StackWalkerAdapter sw(num_discard);
     sw.ShowCallstack();
+    stack = sw.stack;
+}
+
+call_stack::call_stack(void *context)
+{
+    StackWalkerAdapter sw;
+    sw.ShowCallstack(GetCurrentThread(), (const CONTEXT*)context);
     stack = sw.stack;
 }
 
