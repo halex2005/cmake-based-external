@@ -9,3 +9,6 @@ elseif(UNIX)
 endif()
 
 add_library(stacktrace ${SOURCES})
+if (UNIX)
+    target_link_libraries(stacktrace dl)
+endif()
